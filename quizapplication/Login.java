@@ -31,7 +31,7 @@ public class Login extends JFrame implements ActionListener {
         nameBox.setBounds(750, 180, 150, 40);
         add(nameBox);
 
-        submit = new JButton("Submit");
+        submit = new JButton("Submit ");
         submit.setBounds(750, 280, 150, 40);
         submit.addActionListener(this);
         add(submit);
