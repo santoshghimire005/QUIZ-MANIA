@@ -18,7 +18,7 @@ public class Rules extends JFrame implements ActionListener{
         getContentPane().setBackground(Color.WHITE);
         setLayout(null);
 
-        JLabel greet = new JLabel("Welcome "+name+" to Quiz Mania");
+        JLabel greet = new JLabel("Welcome "+name+" to Quiz Mania ");
         greet.setBounds(550, 10, 500, 20);
         greet.setFont(new Font("viner Hand ITC", Font.BOLD, 20));
         greet.setForeground(Color.BLUE);
