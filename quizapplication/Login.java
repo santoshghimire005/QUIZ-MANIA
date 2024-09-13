@@ -6,7 +6,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,23 +24,31 @@ public class Login extends JFrame implements ActionListener {
         JLabel name = new JLabel("Enter your name");
         name.setBounds(550, 180, 200, 50);
         name.setFont(new Font("viner Hand ITC", Font.BOLD, 20));
+        name.setForeground(Color.WHITE);
         add(name);
 
         nameBox = new JTextField();
         nameBox.setBounds(750, 180, 150, 40);
+        nameBox.setFont(new Font("viner Hand ITC", Font.BOLD, 20));
         add(nameBox);
 
         submit = new JButton("Submit ");
         submit.setBounds(750, 280, 150, 40);
+        submit.setFont(new Font("viner Hand ITC", Font.BOLD, 20));
+        submit.setBackground(Color.BLUE);
+        submit.setForeground(Color.WHITE);
         submit.addActionListener(this);
         add(submit);
 
         quit = new JButton("Quit Game");
         quit.setBounds(550, 280, 150, 40);
+        quit.setFont(new Font("viner Hand ITC", Font.BOLD, 20));
+        quit.setBackground(Color.BLUE);
+        quit.setForeground(Color.WHITE);
         quit.addActionListener(this);
         add(quit);
 
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(Color.BLACK);
         setLayout(null);
         ImageIcon img = new ImageIcon(ClassLoader.getSystemResource("icon/login.jpeg"));
         JLabel image = new JLabel(img);
