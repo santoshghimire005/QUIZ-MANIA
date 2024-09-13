@@ -22,7 +22,7 @@ public class Firstqn extends JFrame implements ActionListener {
     String useranswers[][] = new String[10][1];
     JLabel qno, question;
     ButtonGroup groupoptions;
-    public static int timer = 10;
+    public static int timer = 30;
     public static int ans_given = 0;
     public static int count = 0;
     public static int result = 0;
@@ -268,9 +268,9 @@ public class Firstqn extends JFrame implements ActionListener {
         }
         if (ans_given == 1) {
             ans_given = 0;
-            timer = 10;
+            timer = 30;
         } else if (timer < 0) {
-            timer = 10;
+            timer = 30;
             opt1.setVisible(true);
             opt2.setVisible(true);
             opt3.setVisible(true);
