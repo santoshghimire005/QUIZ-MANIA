@@ -6,6 +6,7 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -15,17 +16,22 @@ public class Firstqn extends JFrame {
     JRadioButton opt1, opt2, opt3, opt4;
     String questions[][] = new String[10][5];
     String answers[][] = new String[10][2];
+    String useranswers[][]= new String [10][1];
     JLabel qno, question;
+    ButtonGroup groupoptions;
+    public static int timer = 3;
+    public static int ans_given = 0;
+    public static int count = 0;
 
     public Firstqn() {
 
         qno = new JLabel();
         qno.setBounds(100, 260, 30, 20);
-        qno.setFont(new Font("Dialog", Font.PLAIN, 20));
+        qno.setFont(new Font("Dialog", Font.PLAIN, 17));
         add(qno);
 
         question = new JLabel();
-        question.setBounds(140, 260, 1000, 30);
+        question.setBounds(130, 260, 750, 30);
         question.setBackground(Color.WHITE);
         question.setFont(new Font("Dialog", Font.PLAIN, 18));
         add(question);
@@ -33,33 +39,32 @@ public class Firstqn extends JFrame {
         opt1 = new JRadioButton();
         opt1.setBounds(100, 300, 400, 20);
         opt1.setBackground(Color.WHITE);
-        opt1.setFont(new Font("Dialog", Font.PLAIN, 17));
+        opt1.setFont(new Font("Dialog", Font.PLAIN, 16));
         add(opt1);
 
         opt2 = new JRadioButton();
         opt2.setBounds(100, 330, 400, 20);
         opt2.setBackground(Color.WHITE);
-        opt2.setFont(new Font("Dialog", Font.PLAIN, 17));
+        opt2.setFont(new Font("Dialog", Font.PLAIN, 16));
         add(opt2);
 
         opt3 = new JRadioButton();
         opt3.setBounds(100, 360, 400, 20);
         opt3.setBackground(Color.WHITE);
-        opt3.setFont(new Font("Dialog", Font.PLAIN, 17));
+        opt3.setFont(new Font("Dialog", Font.PLAIN, 16));
         add(opt3);
 
         opt4 = new JRadioButton();
         opt4.setBounds(100, 390, 400, 20);
         opt4.setBackground(Color.WHITE);
-        opt4.setFont(new Font("Dialog", Font.PLAIN, 17));
+        opt4.setFont(new Font("Dialog", Font.PLAIN, 16));
         add(opt4);
 
-        ButtonGroup  groupoption= new ButtonGroup();
-        groupoption.add(opt1);
-        groupoption.add(opt2);
-        groupoption.add(opt3);
-        groupoption.add(opt4);
-
+        groupoptions = new ButtonGroup();
+        groupoptions.add(opt1);
+        groupoptions.add(opt2);
+        groupoptions.add(opt3);
+        groupoptions.add(opt4);
 
         questions[0][0] = "Which is used to find and fix bugs in the Java programs.?";
         questions[0][1] = "JVM";
@@ -139,28 +144,67 @@ public class Firstqn extends JFrame {
         fifty.setForeground(Color.WHITE);
         add(fifty);
 
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(Color.black);
         setLayout(null);
         ImageIcon img = new ImageIcon(ClassLoader.getSystemResource("icon/login.jpeg"));
         JLabel image = new JLabel(img);
         image.setBounds(0, 0, 1000, 250);
         add(image);
 
-        start(4);
+        start(count);
 
         setBounds(200, 170, 1000, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
     }
-    public void start(int count){
-        qno.setText(""+(count+1)+". ");
-        question.setText(""+questions[count][0]+"");
-        opt1.setText(""+questions[count][1]+"");
-        opt2.setText(""+questions[count][2]+"");
-        opt3.setText(""+questions[count][3]+"");
-        opt4.setText(""+questions[count][4]+"");
-        
+
+    public void paint(Graphics g) {
+        super.paint(g);
+
+        String time = "Time left : " + timer + " sec";
+        g.setColor(Color.RED);
+        g.setFont(new Font("Tahoma", Font.BOLD, 20));
+
+        if (timer > 0) {
+            g.drawString(time, 700, 310);
+            
+        } else {
+            g.drawString("Times up!!!", 700, 310);
+        }
+        timer--;
+        try {
+            Thread.sleep(1000);
+            repaint();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        if (ans_given == 1) {
+            ans_given = 0;
+            timer = 3;
+        } else if (timer < 0) {
+            timer = 3;
+            if (groupoptions.getSelection() == null) {
+                useranswers[count][0] = "";
+
+            } else {
+                useranswers[count][0] = groupoptions.getSelection().getActionCommand();
+
+            }
+            count++;
+            start(count);
+        }
+
+    }
+
+    public void start(int count) {
+        qno.setText("" + (count + 1) + ". ");
+        question.setText("" + questions[count][0] + "");
+        opt1.setText("" + questions[count][1] + "");
+        opt2.setText("" + questions[count][2] + "");
+        opt3.setText("" + questions[count][3] + "");
+        opt4.setText("" + questions[count][4] + "");
 
     }
 
